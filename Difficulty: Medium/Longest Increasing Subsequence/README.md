@@ -1,0 +1,12 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/longest-increasing-subsequence-1587115620/1?utm_source=chatgpt.com">Longest Increasing Subsequence</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO" style="--text-color: var(--problem-text-color);"><p><span style="font-size: 14pt;">Given an array <strong>arr[]</strong> of non-negative integers, find the<strong> </strong>length of the Longest Strictly Increasing Subsequence (LIS). </span><span style="font-size: 14pt;">A subsequence is strictly increasing if each element in the subsequence is strictly less than the next element.</span></p>
+<p><span style="font-size: 14pt;"><strong>Examples:</strong></span></p>
+<pre><span style="font-size: 14pt;"><strong>Input: </strong>arr<span class="hljs-selector-attr">[]</span> = <span class="hljs-selector-attr">[5, 8, 3, 7, 9, 1]</span>
+<strong>Output: </strong>3<strong>
+Explanation: </strong>The longest strictly increasing subsequence could be <code>[5, 7, 9]</code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">, which has a length of 3.</span></span></pre>
+<pre><span style="font-size: 14pt;"><strong>Input: </strong>arr[] = [10, 6, 3, 11, 7, 15]
+<strong>Output: </strong>3<strong>
+Explanation: </strong>One of the possible longest strictly increasing subsequences is <code>[10, 11, 15]</code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">, which has a length of 3.</span></span></pre>
+<pre><span style="font-size: 14pt;"><strong>Input: </strong>arr[] = [3, 10, 2, 1, 20]
+<strong>Output: </strong>3<strong>
+Explanation: </strong>The longest strictly increasing subsequence could be <code>[3, 10, 20]</code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">, which has a length of 3.</span></span></pre>
+<p><span style="font-size: 14pt;"></span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Paytm</code>&nbsp;<code>Amazon</code>&nbsp;<code>Microsoft</code>&nbsp;<code>OYO Rooms</code>&nbsp;<code>Samsung</code>&nbsp;<code>BankBazaar</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Dynamic Programming</code>&nbsp;<code>Binary Search</code>&nbsp;
