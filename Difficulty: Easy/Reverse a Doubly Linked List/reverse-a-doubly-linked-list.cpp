@@ -1,40 +1,32 @@
-/*
+/* Structure of Doubly Linked List Node
 class Node {
   public:
     int data;
     Node *next;
     Node *prev;
+
     Node(int val) {
         data = val;
-        next = NULL;
-        prev = NULL;
+        next = nullptr;
+        prev = nullptr;
     }
 };
 
 */
 class Solution {
-public:
+  public:
     Node *reverse(Node *head) {
-
-        Node* curr = head;
-        Node* temp = NULL;
-
-        while (curr != NULL) {
-
-            // Swap prev and next
-            temp = curr->prev;
-            curr->prev = curr->next;
-            curr->next = temp;
-
-            // Move to next node
-            curr = curr->prev;
+        // code here
+        if (head == NULL) return NULL;
+        Node* temp = head;
+        Node* temp2 = NULL;
+        while (temp != NULL) {
+            temp2 = temp->next;
+            temp->next = temp->prev;
+            temp->prev = temp2;
+            if (temp2 == NULL) return temp;
+            temp = temp2;
         }
-
-        // New head
-        if (temp != NULL) {
-            head = temp->prev;
-        }
-
-        return head;
+        return NULL;
     }
 };
