@@ -1,42 +1,58 @@
-/* BST Node
+/* Structure of a Binary Search Tree node
 class Node {
-   public:
-    int data;
-    Node *left;
-    Node *right;
-
-    Node(int x){
-        data = x;
-        left = NULL;
-        right = NULL;
-    }
-};
-*/
+	public:
+	int data;
+	Node* left;
+	Node* right;
+	
+	Node(int x) {
+		data = x;
+		left = nullptr;
+		right = nullptr;
+	}
+}; */
 
 class Solution {
-  public:
-    Node* ans1 = NULL;
-    Node* ans2 = NULL;
-    vector<Node*> findPreSuc(Node* root, int key) {
-        // code here
-        pre(root,key);
-        suc(root,key);
-        return {ans1,ans2};
-    }
-    void pre(Node* root,int key) {
-        if (root == NULL) return;
-        if (root->data < key) {
-            ans1 = root;
-            pre(root->right,key);
-        } 
-        else pre(root->left,key);
-    }
-    void suc(Node* root,int key) {
-        if (root == NULL) return;
-        if (root->data > key) {
-            ans2 = root;
-            suc(root->left,key);
-        } 
-        else suc(root->right,key);
-    }
+	
+	public:
+	vector<Node*> findPreSuc(Node* root, int key) {
+		// code here
+		vector<Node*> res;
+		int ans = key;
+		Node* add = NULL;
+		Node *temp = root;
+		// Predecessor
+		while (temp != NULL) {
+			if (temp->data < key) {
+			    if (ans < temp->data || ans == key) {
+			        ans = temp->data;
+			        add = temp;
+			    }
+			    temp = temp->right;
+			}
+			else {
+			    temp = temp->left;
+			}
+		}
+		res.push_back(add);
+		temp = root;
+		add = NULL;
+		ans = key;
+		// Successor
+		while (temp != NULL) {
+			if (temp->data <= key)
+				temp = temp->right;
+			else {
+				
+				if (ans == key || ans > temp->data) {
+					ans = temp->data;
+					add = temp;
+				}
+				
+				temp = temp->left;
+			}
+		}
+		res.push_back(add);
+		return res;
+	}
 };
