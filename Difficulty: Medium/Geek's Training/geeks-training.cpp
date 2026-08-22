@@ -1,61 +1,34 @@
 class Solution {
   private:
-    // Recursively
-    int rec(vector<vector<int>> &mat, int last, int ind) {
-        if (ind == 0) {
-            int maxi = 0;
-            for (int i = 0;i<3;i++) {
-                if (i != last) {
-                    maxi = max(maxi, mat[0][i]);
-                }
-            }
-            return maxi;
-        }
+    int solve(vector<vector<int>>& mat, int row, int col, int n) {
+        if (row == n) return 0;
         
-        // If not base case try all
-        int maxi = 0;
-        for (int i = 0;i<3;i++) {
-            if (i != last) {
-                int points = mat[ind][i] + rec(mat, i, ind - 1);
-                maxi = max(maxi, points);
-            }
-        }
+        int ans1 = mat[row][col] + solve(mat, row + 1, ((col + 1)%3), n);
+        int ans2 = mat[row][col] + solve(mat, row + 1, ((col + 2)%3), n);
         
-        return maxi;
+        return max(ans1, ans2);
     }
     
-    // Memomization
-    int mem(vector<vector<int>> &mat, int last, int ind, vector<vector<int>> &dp) {
-        if (ind == 0) {
-            int maxi = 0;
-            for (int i = 0;i<3;i++) {
-                if (i != last) {
-                    maxi = max(maxi,mat[0][i]);
-                }
-            }
-            return dp[ind][last] = maxi;
-        }
+    int solve(vector<vector<int>>& mat, int row, int col, int n, vector<vector<int>> &dp) {
+        if (row == n) return 0;
+        if (dp[row][col] != -1) return dp[row][col];
+        int ans1 = mat[row][col] + solve(mat, row + 1, ((col + 1)%3), n, dp);
+        int ans2 = mat[row][col] + solve(mat, row + 1, ((col + 2)%3), n, dp);
         
-        if (dp[ind][last] != 0) return dp[ind][last];
-        
-        int maxi = 0;
-        for (int i = 0;i<3;i++) {
-            if (i != last) {
-                int points = mat[ind][i] + mem(mat, i, ind - 1, dp);
-                maxi = max(maxi, points);
-            }
-        }
-        
-        return dp[ind][last] = maxi;
-        
+        return dp[row][col] = max(ans1, ans2);
     }
     
   public:
     int maximumPoints(vector<vector<int>>& mat) {
         // code here
         int n = mat.size();
-        vector<vector<int>> dp(n, vector<int>(4, 0));
-        // return rec(mat, 3, n - 1);
-        return mem(mat, 3, n - 1, dp);
+        int m = mat[0].size();
+        int ans = -1e8;
+        vector<vector<int>> dp(n, vector<int>(m, -1));
+        for (int i = 0;i<3;i++) {
+            int sum = solve(mat, 0, i, n, dp);
+            ans = max(sum, ans);
+        }
+        return ans;
     }
 };
