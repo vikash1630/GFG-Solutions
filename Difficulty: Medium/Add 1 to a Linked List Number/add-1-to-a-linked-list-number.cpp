@@ -1,61 +1,41 @@
-/*
-struct Node
-{
+/* Structure of linked list Node
+class Node {
+public:
     int data;
-    struct Node* next;
+    Node* next;
 
-    Node(int x){
+    Node(int x) {
         data = x;
-        next = NULL;
+        next = nullptr;
     }
 };
 */
-
 class Solution {
+  private:
+    int add(Node* root, int carry) {
+        if (root == NULL) return carry;
+        
+        int sum = root->data + add(root->next, carry);
+        if (sum <= 9) {
+            root->data = sum;
+            carry = 0;
+        }
+        else {
+            root->data = 0;
+            carry = 1;
+        }
+        return carry;
+    }
   public:
     Node* addOne(Node* head) {
         // code here
-        Node* temp = ReverseLL(head);
-        int carry = 1;
-        Node* ans = new Node(0);
-        Node* res = ans;
-        int sum = 0;
-        while (temp->next != NULL) {
-            sum = temp->data + carry;
-            if (sum > 9) {
-                carry = 1;
-                sum = sum%10;
-            }
-            else {
-                carry = 0;
-            }
-            ans->data = sum;
-            ans->next = new Node(0);
-            ans = ans->next;
-            temp = temp->next;
+        Node *temp = head;
+        int res = add(temp, 1);
+        if (res == 1) {
+            Node* val = new Node(1);
+            val->next = head;
+            return val;
         }
-        sum = temp->data + carry;
-        if (sum > 9) {
-            ans->data = sum%10;
-            ans->next = new Node(0);
-            ans = ans->next;
-            ans->data = carry;
-        }
-        else {
-            ans->data = sum;
-        }
-        return ReverseLL(res);
-        
-    }
-    Node* ReverseLL(Node* head) {
-        Node* curr = head;
-        Node* prev = NULL;
-        while(curr != NULL) {
-            Node* Nextnode = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = Nextnode;
-        }
-        return prev;
+        return head;
     }
 };
